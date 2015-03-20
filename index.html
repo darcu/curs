@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Curs by darcu</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Curs</h1>
+        <h2></h2>
+        <a href="https://github.com/darcu/curs" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="javascript" class="anchor" href="#javascript" aria-hidden="true"><span class="octicon octicon-link"></span></a>JavaScript</h1>
+
+<h2>
+<a id="part-i-data-types-and-basics" class="anchor" href="#part-i-data-types-and-basics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Part I: data types and basics</h2>
+
+<hr>
+
+<h1>
+<a id="data-types" class="anchor" href="#data-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data types</h1>
+
+<p><strong>Primitives</strong></p>
+
+<ul>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>(Symbol ES6)</li>
+</ul>
+
+<p><strong>Object</strong></p>
+
+<hr>
+
+<h2>
+<a id="boolean" class="anchor" href="#boolean" aria-hidden="true"><span class="octicon octicon-link"></span></a>Boolean</h2>
+
+<p>Represents a logical entity and can be either <strong>true</strong> or <strong>false</strong>;</p>
+
+<h2>
+<a id="number" class="anchor" href="#number" aria-hidden="true"><span class="octicon octicon-link"></span></a>Number</h2>
+
+<p>Represents numbers. There is only one type in JavaScript (64-bit double).</p>
+
+<p>Can have values between -(2<sup>53</sup> - 1) and 2<sup>53</sup> - 1 .</p>
+
+<p>Along with numbers, there are three special values <strong>+Infinity</strong>, <strong>-Infinity</strong> and <strong>NaN</strong> (not a number);</p>
+
+<h2>
+<a id="string" class="anchor" href="#string" aria-hidden="true"><span class="octicon octicon-link"></span></a>String</h2>
+
+<p>Represent text data.</p>
+
+<h2>
+<a id="null" class="anchor" href="#null" aria-hidden="true"><span class="octicon octicon-link"></span></a>Null</h2>
+
+<p>A special data type used to represent "empty" values, that is when a variable doesn't have any value, but has been initialized. Null has only one value: <strong>null</strong>.</p>
+
+<h2>
+<a id="undefined" class="anchor" href="#undefined" aria-hidden="true"><span class="octicon octicon-link"></span></a>Undefined</h2>
+
+<p>All variables are initialized with <strong>undefined</strong>.</p>
+
+<hr>
+
+<h1>
+<a id="objects" class="anchor" href="#objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Objects</h1>
+
+<p>An object is a collection of name (key) / value pairs. Keys can only be strings, values can be anything, including functions or other objects.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a <span class="pl-k">=</span> {
+    prop1<span class="pl-k">:</span> <span class="pl-c1">3</span>,
+    prop2<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>proprietate<span class="pl-pds">'</span></span>
+};
+
+<span class="pl-en">console</span><span class="pl-c1">.log</span>( a.prop1 );     <span class="pl-c">// 3</span>
+
+<span class="pl-en">console</span><span class="pl-c1">.log</span>( a[<span class="pl-s"><span class="pl-pds">'</span>prop2<span class="pl-pds">'</span></span>] );  <span class="pl-c">// proprietate</span></pre></div>
+
+<p>There are several ways of initializing an object. We'll get into more detail in the next lesson.</p>
+
+<hr>
+
+<h2>
+<a id="objects-1" class="anchor" href="#objects-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Objects</h2>
+
+<p>"Everything" in JavaScript is an Object.</p>
+
+<ul>
+<li><p>A function is an object with the only distinction that it can be "called".</p></li>
+<li><p>Numbers, booleans and strings are also sometimes objects.</p></li>
+<li><p>Arrays are objects as well.</p></li>
+</ul>
+
+<hr>
+
+<h2>
+<a id="arrays" class="anchor" href="#arrays" aria-hidden="true"><span class="octicon octicon-link"></span></a>Arrays</h2>
+
+<p>Arrays are an indexed collection of values. The behave just like regular objects, i.e. can have their own methods and properties. However, the values are accessed via an index number, not a key. The index starts at 0. They are not a primitive data type.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> arr <span class="pl-k">=</span> [<span class="pl-c1">5</span>, <span class="pl-s"><span class="pl-pds">'</span>valoare<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span>];
+
+arr[<span class="pl-c1">1</span>] <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>valoare<span class="pl-pds">'</span></span>; <span class="pl-c">// true</span>
+arr.<span class="pl-c1">length</span>;         <span class="pl-c">// 3</span>
+
+
+arr.<span class="pl-c1">push</span>(<span class="pl-c1">3</span>);
+arr[<span class="pl-c1">3</span>] <span class="pl-k">===</span> <span class="pl-c1">3</span>;           <span class="pl-c">// true</span>
+arr.<span class="pl-c1">length</span>          <span class="pl-c">// 4</span></pre></div>
+
+<hr>
+
+<h4>
+<a id="the-typeof-operator" class="anchor" href="#the-typeof-operator" aria-hidden="true"><span class="octicon octicon-link"></span></a>the typeof operator</h4>
+
+<p>One simple way of checking the type of a variable is to use the <strong>typeof</strong> operator</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">typeof</span> <span class="pl-c1">2</span>            <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> <span class="pl-s"><span class="pl-pds">'</span>2<span class="pl-pds">'</span></span>          <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> <span class="pl-c1">true</span>         <span class="pl-s"><span class="pl-pds">"</span>boolean<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> {}           <span class="pl-s"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> <span class="pl-c1">null</span>         <span class="pl-s"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> []           <span class="pl-s"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> <span class="pl-c1">NaN</span>          <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> <span class="pl-c1">undefined</span>    <span class="pl-s"><span class="pl-pds">"</span>undefined<span class="pl-pds">"</span></span>
+<span class="pl-k">typeof</span> a            <span class="pl-s"><span class="pl-pds">"</span>undefined<span class="pl-pds">"</span></span></pre></div>
+
+<hr>
+
+<h2>
+<a id="expressions" class="anchor" href="#expressions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Expressions</h2>
+
+<p>An expression is any valid unit of code that resolves to a value. They come in two main types, expressions that assign a value and those that have value.</p>
+
+<div class="highlight highlight-javascript"><pre>x <span class="pl-k">=</span> <span class="pl-c1">3</span>
+
+<span class="pl-c1">3</span> <span class="pl-k">+</span> <span class="pl-c1">4</span></pre></div>
+
+<p>Expression categories:</p>
+
+<ul>
+<li>arithmetic: evaluate to a number</li>
+<li>string: evaluate to a string</li>
+<li>logical: evaluate to <strong>true</strong> or <strong>false</strong>
+</li>
+<li>object: evaluate to an object</li>
+</ul>
+
+<hr>
+
+<h2>
+<a id="operators" class="anchor" href="#operators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Operators</h2>
+
+<p>Operators generally work from right to left, i.e the right-most component is evaluated first.</p>
+
+<h4>
+<a id="assignment" class="anchor" href="#assignment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assignment</h4>
+
+<p>For assignment, this means that the left-side variable takes the value on the right side of the operator</p>
+
+<div class="highlight highlight-javascript"><pre>x <span class="pl-k">=</span> y</pre></div>
+
+<p>x takes the value of y</p>
+
+<div class="highlight highlight-javascript"><pre>x <span class="pl-k">+=</span> y  
+x <span class="pl-k">/=</span> y</pre></div>
+
+<p>is the same as</p>
+
+<div class="highlight highlight-javascript"><pre>x <span class="pl-k">=</span> x <span class="pl-k">+</span> y   
+x <span class="pl-k">=</span> x / y</pre></div>
+
+<h4>
+<a id="arithmetic" class="anchor" href="#arithmetic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Arithmetic</h4>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">+</span>   <span class="pl-k">-</span>   <span class="pl-k">*</span>   /</pre></div>
+
+<ul>
+<li>addition<br>
+</li>
+<li>subtraction<br>
+</li>
+<li>multiplication<br>
+</li>
+<li>division<br>
+</li>
+</ul>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">%</span>   <span class="pl-k">++</span>  <span class="pl-k">--</span></pre></div>
+
+<ul>
+<li>modulo</li>
+<li>increment</li>
+<li>decrement</li>
+</ul>
+
+<div class="highlight highlight-javascript"><pre>x   <span class="pl-k">=</span>   <span class="pl-c1">0</span>;
+<span class="pl-k">++</span>x <span class="pl-k">===</span> <span class="pl-c1">1</span>;
+x<span class="pl-k">++</span> <span class="pl-k">===</span> <span class="pl-c1">1</span>;
+x   <span class="pl-k">===</span> <span class="pl-c1">2</span>;
+<span class="pl-k">--</span>x <span class="pl-k">===</span> <span class="pl-c1">1</span>;</pre></div>
+
+<h4>
+<a id="comparison" class="anchor" href="#comparison" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comparison</h4>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">==</span>  <span class="pl-k">===</span> <span class="pl-k">!=</span>  <span class="pl-k">!==</span> <span class="pl-k">&lt;</span>   <span class="pl-k">&gt;</span>   <span class="pl-k">&lt;=</span>  <span class="pl-k">&gt;=</span></pre></div>
+
+<p><strong>==</strong> vs <strong>===</strong> (equal vs strict equal)</p>
+
+<p>Equal == evaluates to true if the two values are identical</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+
+a <span class="pl-k">==</span> <span class="pl-c1">3</span>      <span class="pl-c">// true</span>
+a <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>3<span class="pl-pds">'</span></span>    <span class="pl-c">// true</span>
+<span class="pl-c1">3</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>3<span class="pl-pds">'</span></span>    <span class="pl-c">// true</span></pre></div>
+
+<p>Strict equal === evaluates to true if the two values are identical and have the same type.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+
+a <span class="pl-k">===</span> <span class="pl-c1">3</span>     <span class="pl-c">// true</span>
+a <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>3<span class="pl-pds">'</span></span>   <span class="pl-c">// false</span>
+<span class="pl-c1">3</span> <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>3<span class="pl-pds">'</span></span>   <span class="pl-c">// false</span></pre></div>
+
+<p>More on equality comparison and sameness <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">here</a>.</p>
+
+<h4>
+<a id="logical" class="anchor" href="#logical" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logical</h4>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">&amp;&amp;</span> <span class="pl-k">||</span> <span class="pl-k">!</span></pre></div>
+
+<p>Logical AND</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a1 <span class="pl-k">=</span> <span class="pl-c1">true</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">true</span>;      <span class="pl-c">// t &amp;&amp; t returns true</span>
+<span class="pl-k">var</span> a2 <span class="pl-k">=</span> <span class="pl-c1">true</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">false</span>;     <span class="pl-c">// t &amp;&amp; f returns false</span>
+<span class="pl-k">var</span> a3 <span class="pl-k">=</span> <span class="pl-c1">false</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">true</span>;     <span class="pl-c">// f &amp;&amp; t returns false</span>
+<span class="pl-k">var</span> a4 <span class="pl-k">=</span> <span class="pl-c1">false</span> <span class="pl-k">&amp;&amp;</span> (<span class="pl-c1">3</span> <span class="pl-k">==</span> <span class="pl-c1">4</span>); <span class="pl-c">// f &amp;&amp; f returns false</span>
+<span class="pl-k">var</span> a5 <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span> <span class="pl-k">&amp;&amp;</span> <span class="pl-s"><span class="pl-pds">"</span>Dog<span class="pl-pds">"</span></span>;    <span class="pl-c">// t &amp;&amp; t returns Dog</span>
+<span class="pl-k">var</span> a6 <span class="pl-k">=</span> <span class="pl-c1">false</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span>;    <span class="pl-c">// f &amp;&amp; t returns false</span>
+<span class="pl-k">var</span> a7 <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span> <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">false</span>;    <span class="pl-c">// t &amp;&amp; f returns false</span></pre></div>
+
+<p>Logical OR</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> o1 <span class="pl-k">=</span>  <span class="pl-c1">true</span> <span class="pl-k">||</span> <span class="pl-c1">true</span>;     <span class="pl-c">// t || t returns true</span>
+<span class="pl-k">var</span> o2 <span class="pl-k">=</span> <span class="pl-c1">false</span> <span class="pl-k">||</span> <span class="pl-c1">true</span>;     <span class="pl-c">// f || t returns true</span>
+<span class="pl-k">var</span> o3 <span class="pl-k">=</span>  <span class="pl-c1">true</span> <span class="pl-k">||</span> <span class="pl-c1">false</span>;    <span class="pl-c">// t || f returns true</span>
+<span class="pl-k">var</span> o4 <span class="pl-k">=</span> <span class="pl-c1">false</span> <span class="pl-k">||</span> (<span class="pl-c1">3</span> <span class="pl-k">==</span> <span class="pl-c1">4</span>); <span class="pl-c">// f || f returns false</span>
+<span class="pl-k">var</span> o5 <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span> <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">"</span>Dog<span class="pl-pds">"</span></span>;    <span class="pl-c">// t || t returns Cat</span>
+<span class="pl-k">var</span> o6 <span class="pl-k">=</span> <span class="pl-c1">false</span> <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span>;    <span class="pl-c">// f || t returns Cat</span>
+<span class="pl-k">var</span> o7 <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span> <span class="pl-k">||</span> <span class="pl-c1">false</span>;    <span class="pl-c">// t || f returns Cat</span></pre></div>
+
+<p>Logical NOT</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> n1 <span class="pl-k">=</span> <span class="pl-k">!</span><span class="pl-c1">true</span>;  <span class="pl-c">// !t returns false</span>
+<span class="pl-k">var</span> n2 <span class="pl-k">=</span> <span class="pl-k">!</span><span class="pl-c1">false</span>; <span class="pl-c">// !f returns true</span>
+<span class="pl-k">var</span> n3 <span class="pl-k">=</span> <span class="pl-k">!</span><span class="pl-s"><span class="pl-pds">"</span>Cat<span class="pl-pds">"</span></span>; <span class="pl-c">// !t returns false</span></pre></div>
+
+<h4>
+<a id="bitwise" class="anchor" href="#bitwise" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bitwise</h4>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">&amp;</span>   |   <span class="pl-k">^</span>   <span class="pl-k">&gt;&gt;</span>  <span class="pl-k">&gt;&gt;&gt;</span> <span class="pl-k">&lt;&lt;</span></pre></div>
+
+<p>Bitwise AND, OR, XOR, NOT, left shift, sign-propagating right shift, zero-fill right shift</p>
+
+<h4>
+<a id="string-1" class="anchor" href="#string-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>String</h4>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">+</span>
+
+<span class="pl-k">var</span> bb <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>bibi<span class="pl-pds">'</span></span>;
+<span class="pl-s"><span class="pl-pds">'</span>gigi<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>mimi<span class="pl-pds">'</span></span> <span class="pl-k">+</span> bb <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>gigimimibibi<span class="pl-pds">'</span></span></pre></div>
+
+<h4>
+<a id="ternary" class="anchor" href="#ternary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ternary</h4>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">?</span> <span class="pl-k">:</span>
+
+ a <span class="pl-k">===</span> <span class="pl-c1">3</span> <span class="pl-k">?</span> <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>equals 3<span class="pl-pds">'</span></span>) <span class="pl-k">:</span> <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>doesn<span class="pl-cce">\'</span>t equal 3<span class="pl-pds">'</span></span>);
+
+ <span class="pl-k">if</span> (a <span class="pl-k">===</span> <span class="pl-c1">3</span>) {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>equals 3<span class="pl-pds">'</span></span>); 
+ } <span class="pl-k">else</span> {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>doesn<span class="pl-cce">\'</span>t equal 3<span class="pl-pds">'</span></span>)
+ }</pre></div>
+
+<p>More on expressions and operators <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">here</a>.</p>
+
+<hr>
+
+<h2>
+<a id="type-conversion" class="anchor" href="#type-conversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Type conversion</h2>
+
+<p>Because JavaScript is <strong>loosely-typed</strong>, the JavaScript interpreter converts variable types on the fly, according to very specific rules;</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a;
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>undefined<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">=</span> a <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>3<span class="pl-pds">'</span></span>;
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">=</span> <span class="pl-c1">false</span> <span class="pl-k">||</span> a;
+    a becomes <span class="pl-s"><span class="pl-pds">'</span>33<span class="pl-pds">'</span></span>
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">=</span> <span class="pl-c1">true</span> <span class="pl-k">||</span> a;
+    a becomes <span class="pl-c1">true</span>
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>boolean<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">=</span> <span class="pl-k">+</span> a;
+    a becomes <span class="pl-c1">1</span>
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">=</span> a <span class="pl-k">+</span> <span class="pl-c1">null</span>
+    <span class="pl-c1">null</span> is converted to <span class="pl-c1">0</span> so a remains <span class="pl-c1">1</span>
+
+a <span class="pl-k">=</span> <span class="pl-k">+</span> <span class="pl-c1">undefined</span>
+    <span class="pl-c1">undefined</span> becomes <span class="pl-c1">NaN</span>, so a becomes <span class="pl-c1">undefined</span>
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>undefined<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">===</span> <span class="pl-c1">NaN</span> <span class="pl-c">// false</span>
+    <span class="pl-c1">NaN</span> is not equal to itself, because JavaScript
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">+=</span> <span class="pl-s"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>;
+    a becomes <span class="pl-s"><span class="pl-pds">'</span>NaNa<span class="pl-pds">'</span></span>
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>
+
+a <span class="pl-k">+=</span> <span class="pl-c1">undefined</span>;
+    a becomes <span class="pl-s"><span class="pl-pds">'</span>NaNaundefined<span class="pl-pds">'</span></span>
+    <span class="pl-k">typeof</span> a    <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span></pre></div>
+
+<p>More on type conversion and equality operators <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Using_the_Equality_Operators">here</a>.</p>
+
+<hr>
+
+<h2>
+<a id="statements" class="anchor" href="#statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statements</h2>
+
+<ul>
+<li>if</li>
+<li>switch</li>
+<li>while</li>
+<li>do</li>
+<li>for</li>
+<li>break</li>
+<li>continue</li>
+<li>return</li>
+<li>throw</li>
+<li>try/catch</li>
+<li>var</li>
+</ul>
+
+<hr>
+
+<h2>
+<a id="control-flow" class="anchor" href="#control-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Control flow</h2>
+
+<h4>
+<a id="block-" class="anchor" href="#block-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Block {}</h4>
+
+<p>Delimited by curly brackets <strong>{}</strong>. A block statement groups other statements.</p>
+
+<h4>
+<a id="break" class="anchor" href="#break" aria-hidden="true"><span class="octicon octicon-link"></span></a>break</h4>
+
+<p>Terminates the current loop or switch</p>
+
+<h4>
+<a id="continue" class="anchor" href="#continue" aria-hidden="true"><span class="octicon octicon-link"></span></a>continue</h4>
+
+<p>Terminates the current iteration of the loop and continues with the next one</p>
+
+<h4>
+<a id="ifelse" class="anchor" href="#ifelse" aria-hidden="true"><span class="octicon octicon-link"></span></a>if...else</h4>
+
+<p>Executes a statement if the condition is true, otherwise another optional statement will be executed.</p>
+
+<h4>
+<a id="switch" class="anchor" href="#switch" aria-hidden="true"><span class="octicon octicon-link"></span></a>switch</h4>
+
+<p>Evaluates an expression, matching the expression's value to a case clause, and executes statements associated with that case.</p>
+
+<h4>
+<a id="throw" class="anchor" href="#throw" aria-hidden="true"><span class="octicon octicon-link"></span></a>throw</h4>
+
+<p>Throws a user-defined exception.</p>
+
+<h4>
+<a id="trycatch" class="anchor" href="#trycatch" aria-hidden="true"><span class="octicon octicon-link"></span></a>try...catch</h4>
+
+<p>Tries a block of statements and specifies a response if an exception is thrown.</p>
+
+<hr>
+
+<h2>
+<a id="declarations" class="anchor" href="#declarations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Declarations</h2>
+
+<h4>
+<a id="var" class="anchor" href="#var" aria-hidden="true"><span class="octicon octicon-link"></span></a>var</h4>
+
+<p>Declares a variable and optionally initializes it with a value;</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a;
+<span class="pl-k">var</span> b <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+
+a <span class="pl-k">===</span> <span class="pl-c1">undefined</span>;    <span class="pl-c">// is true</span>
+a <span class="pl-k">===</span> <span class="pl-c1">3</span>;            <span class="pl-c">// is true</span></pre></div>
+
+<h4>
+<a id="let" class="anchor" href="#let" aria-hidden="true"><span class="octicon octicon-link"></span></a>let</h4>
+
+<p>Declares a block-scoped local variable.</p>
+
+<h4>
+<a id="const" class="anchor" href="#const" aria-hidden="true"><span class="octicon octicon-link"></span></a>const</h4>
+
+<p>Declares a read-only (immutable) constant.</p>
+
+<hr>
+
+<h2>
+<a id="functions" class="anchor" href="#functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Functions</h2>
+
+<h4>
+<a id="function" class="anchor" href="#function" aria-hidden="true"><span class="octicon octicon-link"></span></a>function</h4>
+
+<p>Declares a function with the specified parameters.</p>
+
+<h4>
+<a id="return" class="anchor" href="#return" aria-hidden="true"><span class="octicon octicon-link"></span></a>return</h4>
+
+<p>Specifies the return value of a function.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">function</span> <span class="pl-en">ofunctie</span>(<span class="pl-smi">ceva</span>) {
+    <span class="pl-k">var</span> altceva <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>altceva<span class="pl-pds">'</span></span>;
+    <span class="pl-k">return</span> ceva <span class="pl-k">+</span> altceva
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="iterations" class="anchor" href="#iterations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Iterations</h2>
+
+<h4>
+<a id="dowhile" class="anchor" href="#dowhile" aria-hidden="true"><span class="octicon octicon-link"></span></a>do...while</h4>
+
+<p>Creates a loop that runs until the condition is false. The condition is evaluated after the statements so the code is run at least once.</p>
+
+<h4>
+<a id="while" class="anchor" href="#while" aria-hidden="true"><span class="octicon octicon-link"></span></a>while</h4>
+
+<p>Creates a loop that runs until the condition is false. The condition is evaluated before the statements.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span>;
+<span class="pl-k">do</span> {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>ceva<span class="pl-pds">'</span></span>);    <span class="pl-c">// this code will run</span>
+} <span class="pl-k">while</span>(i <span class="pl-k">&lt;</span> <span class="pl-c1">0</span>);
+
+<span class="pl-k">while</span> (i <span class="pl-k">&lt;</span> <span class="pl-c1">0</span>) {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>altceva<span class="pl-pds">'</span></span>); <span class="pl-c">// this one won't</span>
+}</pre></div>
+
+<h4>
+<a id="for" class="anchor" href="#for" aria-hidden="true"><span class="octicon octicon-link"></span></a>for</h4>
+
+<p>Creates a loop with three optional expressions and a statement which is run in a loop until the middle expression is false.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">for</span> (<span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span>; i <span class="pl-k">&lt;</span> <span class="pl-c1">5</span>; i<span class="pl-k">++</span>) {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(i);
+}</pre></div>
+
+<p>First the variable i is created and given the value 0. In the first run of the loop, i === 0. After the statement block is run, i is incremented and gets the value 1.</p>
+
+<h4>
+<a id="forin" class="anchor" href="#forin" aria-hidden="true"><span class="octicon octicon-link"></span></a>for...in</h4>
+
+<p>Iterates over the enumerable properties of an object</p>
+
+<h4>
+<a id="forof" class="anchor" href="#forof" aria-hidden="true"><span class="octicon octicon-link"></span></a>for...of</h4>
+
+<p>Iterates over iterable objects. Only works in ES6 (ECMAScript 6) the next 'version' of the JavaScript standard.</p>
+
+<hr>
+
+<hr>
+
+<h1>
+<a id="javascript-1" class="anchor" href="#javascript-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>JavaScript</h1>
+
+<h2>
+<a id="part-ii-grammar" class="anchor" href="#part-ii-grammar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Part II: grammar</h2>
+
+<hr>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">/*</span>
+<span class="pl-c">    first we declare the variables</span>
+<span class="pl-c">*/</span>
+<span class="pl-k">var</span> a;
+<span class="pl-k">var</span> b <span class="pl-k">=</span> <span class="pl-c1">5</span>;
+<span class="pl-k">var</span> c;
+
+a <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+c <span class="pl-k">=</span> a <span class="pl-k">+</span> b;
+
+
+
+<span class="pl-k">var</span> <span class="pl-en">smaller</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+    <span class="pl-c">// </span>
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>number is smaller than 10<span class="pl-pds">'</span></span>);
+};
+
+<span class="pl-k">function</span> <span class="pl-en">bigger</span>() {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>number is bigger than 10<span class="pl-pds">'</span></span>);
+}
+
+<span class="pl-c">// if c is bigger than 10, call bigger, otherwise call smaller</span>
+<span class="pl-k">if</span> (c <span class="pl-k">&gt;</span> <span class="pl-c1">10</span>) {
+    bigger();   
+} <span class="pl-k">else</span> {
+    smaller();
+}
+</pre></div>
+
+<h4>
+<a id="best-practices" class="anchor" href="#best-practices" aria-hidden="true"><span class="octicon octicon-link"></span></a>Best practices</h4>
+
+<ul>
+<li>always use semicolon <strong>;</strong>
+</li>
+<li>always use curly brackets <strong>{}</strong>
+</li>
+<li>each statement gets its own line</li>
+<li>space between operators and blocks</li>
+</ul>
+
+<hr>
+
+<h2>
+<a id="syntax" class="anchor" href="#syntax" aria-hidden="true"><span class="octicon octicon-link"></span></a>Syntax</h2>
+
+<p>JavaScript borrows a lot from Java in terms of syntax, but is otherwise completely unrelated.</p>
+
+<h2>
+<a id="identifiers-names" class="anchor" href="#identifiers-names" aria-hidden="true"><span class="octicon octicon-link"></span></a>Identifiers (names)</h2>
+
+<ul>
+<li>starts with a letter or "_" or "$"</li>
+<li>followed by zero or more letters, digits, "_" or "$"</li>
+<li>by convention, all variables, members and function names:
+
+<ul>
+<li>start with lowercase (except for constructors)</li>
+<li>that start with "_" should be reserved for internal use (are private)</li>
+<li>that start with "$" should be reserved for machines</li>
+</ul>
+</li>
+<li>cannot coincide with a reserved word</li>
+</ul>
+
+<hr>
+
+<h4>
+<a id="reserved-words" class="anchor" href="#reserved-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reserved words</h4>
+
+<p>You don't have to remember them, but it's good to know that they exist.</p>
+
+<ul>
+<li>abstract</li>
+<li>boolean break byte</li>
+<li>case catch char class const continue</li>
+<li>debugger default delete do double</li>
+<li>else enum export extends</li>
+<li>false final finally float for function</li>
+<li>goto</li>
+<li>if implements import in instanceof int interface</li>
+<li>long</li>
+<li>native new null</li>
+<li>package private protected public</li>
+<li>return</li>
+<li>short static super switch synchronized</li>
+<li>this throw throws transient true try typeof</li>
+<li>var volatile void</li>
+<li>while with</li>
+</ul>
+
+<hr>
+
+<h4>
+<a id="comments" class="anchor" href="#comments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comments</h4>
+
+<p>Comments allow you to make annotations without affecting the code </p>
+
+<p>One line comments start with //</p>
+
+<p>Multi-line comments are enclosed with /* */</p>
+
+<h4>
+<a id="declarations-and-statements" class="anchor" href="#declarations-and-statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Declarations and statements</h4>
+
+<p>A statement should end with a semicolon. This is optional, but is always recommended.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a;
+<span class="pl-k">var</span> b <span class="pl-k">=</span> <span class="pl-c1">3</span>;</pre></div>
+
+<p>This is also valid but is not recommended</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> c <span class="pl-k">=</span> <span class="pl-c1">5</span>
+d <span class="pl-k">=</span> <span class="pl-c1">8</span>;
+e <span class="pl-k">=</span> c <span class="pl-k">+</span> d</pre></div>
+
+<h4>
+<a id="asi---automatic-semicolon-insertion" class="anchor" href="#asi---automatic-semicolon-insertion" aria-hidden="true"><span class="octicon octicon-link"></span></a>ASI - automatic semicolon insertion</h4>
+
+<p>JavaScript uses ASI for 'convenience'. Technically, each statement must end with a semicolon, but the JavaScript interpreters will add the semicolon where they see fit. This is prone to errors and confusion and should be avoided.</p>
+
+<h4>
+<a id="code-blocks" class="anchor" href="#code-blocks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code blocks</h4>
+
+<p>A block of statements can be enclosed in curly brackets. This is optional in some cases, but is always recommended.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">if</span> (something) {
+    <span class="pl-c">// do something</span>
+} <span class="pl-k">else</span> {
+    <span class="pl-c">// do something else</span>
+}</pre></div>
+
+<p>Curly brackets can be used to create blocks of code anywhere or just to differentiate some code.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a <span class="pl-k">=</span> <span class="pl-c1">5</span>;
+<span class="pl-k">var</span> c;
+{
+    <span class="pl-k">var</span> b <span class="pl-k">=</span> <span class="pl-c1">15</span>;
+    c <span class="pl-k">=</span> a <span class="pl-k">+</span> b;
+}
+
+c <span class="pl-k">===</span> <span class="pl-c1">20</span>; <span class="pl-c">// is true</span>
+</pre></div>
+
+<p>It's not always necessary to use them. This is also valid code but not recommended.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">if</span> (something)
+    <span class="pl-c">// do something</span>
+<span class="pl-k">else</span>
+    <span class="pl-c">// do something else</span></pre></div>
+
+<p>Still valid, even less recommended.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">if</span> (something) <span class="pl-c">/* do something */</span> <span class="pl-k">else</span> <span class="pl-c">/* do something else */</span></pre></div>
+
+<p>The problem here is something like this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a, b, something <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+
+<span class="pl-k">if</span> (something) 
+    a <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+    b <span class="pl-k">=</span> <span class="pl-c1">5</span>;
+
+a <span class="pl-k">===</span> <span class="pl-c1">3</span>; <span class="pl-c">// false, a === undefined</span>
+b <span class="pl-k">===</span> <span class="pl-c1">5</span>; <span class="pl-c">// true</span>
+</pre></div>
+
+<p>Is actually interpreted as:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> a, b, something <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+
+<span class="pl-k">if</span> (something) {
+    a <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+}
+b <span class="pl-k">=</span> <span class="pl-c1">5</span>;
+
+a <span class="pl-k">===</span> <span class="pl-c1">3</span>; <span class="pl-c">// false, a === undefined</span>
+b <span class="pl-k">===</span> <span class="pl-c1">5</span>; <span class="pl-c">// true</span></pre></div>
+
+<hr>
+
+<h2>
+<a id="literals" class="anchor" href="#literals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Literals</h2>
+
+<h4>
+<a id="array-literals" class="anchor" href="#array-literals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Array literals</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> coffees <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>French Roast<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Colombian<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Kona<span class="pl-pds">"</span></span>];
+<span class="pl-k">var</span> fish <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>Lion<span class="pl-pds">"</span></span>, , <span class="pl-s"><span class="pl-pds">"</span>Angel<span class="pl-pds">"</span></span>];
+<span class="pl-k">var</span> myList <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>, , <span class="pl-s"><span class="pl-pds">'</span>school<span class="pl-pds">'</span></span>, ];
+<span class="pl-k">var</span> myList <span class="pl-k">=</span> [ , <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>, , <span class="pl-s"><span class="pl-pds">'</span>school<span class="pl-pds">'</span></span>];</pre></div>
+
+<h4>
+<a id="boolean-literals" class="anchor" href="#boolean-literals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Boolean literals</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> mimi <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+<span class="pl-k">var</span> bibi <span class="pl-k">=</span> <span class="pl-c1">false</span>;</pre></div>
+
+<h4>
+<a id="number-literals" class="anchor" href="#number-literals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Number literals</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// integers</span>
+<span class="pl-c1">0</span>
+<span class="pl-c1">1.3</span>
+<span class="pl-k">-</span><span class="pl-c1">23.666</span>
+<span class="pl-k">-</span>.<span class="pl-c1">2e4</span></pre></div>
+
+<h4>
+<a id="string-literals" class="anchor" href="#string-literals" aria-hidden="true"><span class="octicon octicon-link"></span></a>String literals</h4>
+
+<p>Are defined with either a single or double quotation mark</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>
+<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>
+<span class="pl-s"><span class="pl-pds">'</span>1234<span class="pl-pds">'</span></span>
+<span class="pl-s"><span class="pl-pds">"</span>a new <span class="pl-cce">\n</span> line<span class="pl-pds">"</span></span>
+<span class="pl-s"><span class="pl-pds">"</span>Can't use the same type of quotation marks inside a string<span class="pl-pds">"</span></span>
+<span class="pl-s"><span class="pl-pds">'</span>Don<span class="pl-cce">\'</span>t forget to use an escape character<span class="pl-pds">'</span></span>
+<span class="pl-s"><span class="pl-pds">'</span>"this" is also valid<span class="pl-pds">'</span></span></pre></div>
+
+<hr>
+
+<h1>
+<a id="javascript-2" class="anchor" href="#javascript-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>JavaScript</h1>
+
+<h2>
+<a id="part-iii-hoisting-scope-closure" class="anchor" href="#part-iii-hoisting-scope-closure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Part III: hoisting, scope, closure</h2>
+
+<hr>
+
+<hr>
+
+<h1>
+<a id="variables" class="anchor" href="#variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variables</h1>
+
+<h1>
+<a id="global-local" class="anchor" href="#global-local" aria-hidden="true"><span class="octicon octicon-link"></span></a>global local</h1>
+
+<hr>
+
+<p>null is object 
+null == undefined
+null !== undefined</p>
+
+<p>truthy</p>
+
+<p>type</p>
+
+<hr>
+
+<p>MDN
+O'reilly
+crockford</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/darcu/curs/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/darcu/curs/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/darcu/curs"></a> is maintained by <a href="https://github.com/darcu">darcu</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
