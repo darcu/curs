@@ -1,0 +1,28 @@
+body {
+  font-family: 'Source Sans Pro';
+  font-size: 24px;
+}
+
+code {
+	font-size: 16px;
+	padding: 20px !important;
+	padding-left: 40px !important;
+}
+
+h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+
+
+
+#content {
+  width: 1200px;
+  margin: 80px auto;
+}
+
+strong {
+	font-family: 'Ubuntu Mono';
+	color: #0051a4;
+}
+
