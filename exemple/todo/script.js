@@ -65,6 +65,7 @@ function addElement(text) {
 // we listen for a change on the input element to add new items
 adauga.addEventListener('change', function(e) {
 	addElement(adauga.value);
+	addToList(adauga.value)
 	adauga.value = '';
 });
 
@@ -86,12 +87,14 @@ function getFromStorage() {
 }
 
 // a helper function to generate random colors
+var lastColor = 0;
 function randomColor() {
 	var index;
 
-	// index must be a number between 0 and 9
-	// Math.random() as well as Math.ceil or Math.floor or Math.round will come in handy
-	// the picked color must be different from the last generated color
+	do {
+		index = Math.ceil(Math.random() * 9);
+	} while (index === lastColor);
+	lastColor = index;
 
 	return colorTheme[index];
 }
@@ -100,3 +103,25 @@ function randomColor() {
  *	Now write the code to make sure your list is saved offline
  */
 
+var listData = [];
+
+function addToList(text) {
+	listData.push(text);
+	updateStorage(listData);
+}
+
+function removeFromList(index) {
+	listData.splice(index, 1);
+	updateStorage(listData);
+}
+
+function init() {
+
+}
+listData = getFromStorage();
+
+if (listData) {
+	for (var i = 0; i < listData.length; i++) {
+		addElement(listData[i]);
+	}
+}
