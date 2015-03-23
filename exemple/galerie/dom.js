@@ -10,25 +10,81 @@ var imagini = [
 	'img/5.jpg'
 ];
 
-stanga.addEventListener('click', function (e) {
+var currentImage = 0;
+var timeout;
+
+stanga.addEventListener('click', function(e) {
 	console.log('click stanga');
+	pauseTimeline();
+	previousImage();
 });
 
-dreapta.addEventListener('click', function (e) {
+dreapta.addEventListener('click', function(e) {
 	console.log('click dreapta');
+	pauseTimeline();
+	nextImage();
 });
 
-play.addEventListener('click', function (e) {
+play.addEventListener('click', function(e) {
 	console.log('click play');
+	playPause();
 });
 
-function changeImage(i){
+function changeImage(i) {
 	img.src = imagini[i];
 }
 
 function changePlayName(newName) {
 	play.textContent = newName;
 }
+
+function playPause() {
+	if (timeout) {
+		pauseTimeline();
+	} else {
+		playTimeline();
+	}
+}
+
+function playTimeline() {
+	console.log('playing');
+
+	changePlayName('▮▮');
+	timeout = setTimeout(function() {
+		nextImage();
+		playTimeline();
+	}, 2000);
+}
+
+function pauseTimeline() {
+	console.log('paused');
+
+	changePlayName('▶');
+	clearTimeout(timeout);
+	timeout = null;
+}
+
+function nextImage() {
+	if (currentImage < imagini.length - 1) {
+		currentImage++;
+	} else {
+		currentImage = 0;
+	}
+
+	changeImage(currentImage);
+}
+
+function previousImage() {
+	if (currentImage > 1) {
+		currentImage--;
+	} else {
+		currentImage = imagini.length - 1;
+	}
+
+	changeImage(currentImage);
+}
+
+playTimeline();
 
 // this will be useful
 // var timeout = setTimeout(function() {
@@ -37,4 +93,3 @@ function changePlayName(newName) {
 
 // so will this
 // clearTimeout(timeout);
-
