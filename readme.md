@@ -702,33 +702,235 @@ Are defined with either a single or double quotation mark
 ---
 
 # JavaScript
-## Part III: hoisting, scope, closure
+## Part III: hoisting, function scope, closure
 
 ---
 
+## Hoisting
 
+One of the interesting, or at least different things about JavaScript is variable hoisting. A variable declared anywhere in a function will be 'hoisted' to the top of the function, so it will be available anywhere in that function. In practice, the code:
+
+```javascript
+function func() {
+	console.log(a);	// undefined
+
+	var a = 5;
+	console.log(a);	// 5
+}
+```
+
+is interpreted as:
+
+```javascript
+function func() {
+	var a;
+	console.log(a);	// undefined
+
+	a = 5;
+	console.log(a);	// 5
+}
+```
+
+The reason why this happens is scope, the part of the code where a variable is accessible.
 
 ---
 
-# Variables
+## Scope
 
-# global local
+In JavaScript, a variable is defined and available anywhere in the function it belongs to. It will also available in functions nested within the parent function and will overwrite any variable with the same name in functions that contain the parent function. This is called function scope, as opposed to the block scope other languages use. 
 
+```javascript
+var a = 3;
+console.log(a);	// 3
+
+function func() {
+	var a = 5;
+	console.log(a);	// 5
+}
+
+func();
+console.log(a);	// 3
+```
+
+The variable *a* has the value 3 outside of the function *func*, but 5 inside it. Consider this example:
+
+```javascript
+function parinte() {
+	var a = 5;
+	var c = 1;
+
+	function copil() {
+		var b = 3;
+		c += b;
+	}
+
+	copil();
+
+	console.log(a + b);	// referenceError: b is not defined
+}
+
+parinte();
+```
+
+The variable *b* is only available within the function *copil*, where it was defined. In the *parinte* function, it doesn't exist and the JavaScript interpreter will throw a referenceError. On the other hand, *c* is defined in *parinte* so it's available in *copil* as well.
+
+In block-scoped languages, the following code would output 1, 2, 1 because the **if** block would create a new scope, i.e. variables declared in it will be available and supersede the ones in the parent scope:
+
+```javascript
+function func() {
+	var a = 1;
+	console.log(a);
+
+	if (a) {
+		var a = 2;
+		console.log(a);
+	}
+
+	console.log(a);
+}
+```
+
+In JavaScript, the result will be 1, 2, 2 because a will be the same variable within the entire body of the function, so using *var* again does nothing. For the interpreter, the code will look like this.
+
+```javascript
+function func() {
+	var a;
+	a = 1;
+
+	console.log(a);
+	if (a) {
+		a = 2;
+		console.log(a);
+	}
+
+	console.log(a);
+}
+```
+
+Function scope gets a special mention. Functions in JavaScript are created in two main ways.
+
+```javascript
+var func1 = function() {
+	// do something
+};
+
+function func2() {
+	// do something else
+}
+```
+
+The first is a function expression assigned to the variable func1. The second is a function declaration given the name func2. In the first case, an anonymous (it doesn't have a name) function is created and assigned to the regular variable var1. If we wouldn't assign it to a variable, there would be no way of calling the function.
+
+In the second case, a named function is created so we have a reference to it via its name. In most cases, these two ways of creating a function achieve the same results. There are a few differences when it comes to scope though:
+
+```javascript
+function test() {
+	func1(); // TypeError "foo is not a function"
+	func2(); 
+
+	var func1 = function () {
+		// do something
+	};
+	
+	function func2() {
+		// do something else
+	}
+}
+```
+
+Because of hoisting, the variable func1 is declared at the start of the code. But because it's not initialized, it's value is undefined. Only later it's assigned to the function. However, the entire function declaration of func2 is hoisted to the top, so the code is actually interpreted as:
+
+ ```javascript
+ function test() {
+ 	var func1;
+ 	function func2() {
+ 		// do something else
+ 	}
+
+ 	func1(); // TypeError "foo is not a function"
+ 	func2(); 
+
+ 	func1 = function () {
+ 		// do something
+ 	};
+ }
+ ```
+
+Note that you don't need to and shouldn't use a semicolon after a function declaration, which is itself a complete statement. However, a semicolon is needed if you assign a function to a variable.
 
 ---
 
-null is object 
-null == undefined
-null !== undefined
+#### Global vs Local scope
 
-truthy
+A variable not declared in any function is called a **global** variable, i.e. it is declared to the **global namespace** or the **global scope**. In browsers, it's actually attached to the **window** global object and can be accessed either directly or as a property of window.
 
-type
+```javascript
+var a = 6;
+
+console.log(a);	// 6
+console.log(window.a);	// 6
+```
+
+There's nothing special about the global scope, it's just the top most scope which contains all other scopes. A variable initialized anywhere before it is defined (that is, without a *var*) will be a global variable by default. If we were to change the example it to this:
+
+```javascript
+function parinte() {
+	var a = 5;
+	var c = 1;
+
+	function copil() {
+		var b = 3;
+		c += b;
+	}
+
+	copil();
+
+	b = 11;	// b becomes a global variable
+
+	console.log(a + b);	// 16
+	console.log(c);		// 4
+}
+
+parinte();
+
+console.log(b);		// 11
+console.log(a);		// referenceError
+```
+
+The global scope and initializing variables without *var* is generally to be avoided. Any global variable will be accessible to any script that runs on the same page. You may end up overwriting a variable from a library or another piece of code, or your variable may overwrite something else. It also means the data in the variable is potentially accessible to third-party code. There are several ways of avoiding the global namespace, which we'll get to a bit later.
 
 ---
 
-MDN
-O'reilly
-crockford
+## Closure
+
+Function scope lends itself to some interesting patterns. A function declared inside another inherits the parent's scope creating a closure.
+
+```javascript
+function parinte() {
+	var gigi = 13;
+	
+	return function copil() {
+		return gigi;
+	}
+}
+
+var getInside = parinte();
+console.log( globalVariable() );	// 13
+```
+
+The variable *getInside* is assigned the return of value of the *parinte* function. In this case, the return value is the function *copil*. So now, when we call *getInside* we actually call the *copil* function. Because *copil* has access to *parinte*'s scope it has access to *gigi*.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
