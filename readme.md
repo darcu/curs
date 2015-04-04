@@ -920,17 +920,193 @@ console.log( globalVariable() );	// 13
 
 The variable *getInside* is assigned the return of value of the *parinte* function. In this case, the return value is the function *copil*. So now, when we call *getInside* we actually call the *copil* function. Because *copil* has access to *parinte*'s scope it has access to *gigi*.
 
+---
+
+# JavaScript
+## Part IV: objects
+
+---
+
+In JavaScript, everything is an object. But JavaScript does object oriented programming a little different.
+
+An object is a collection of values and functionality. An object can have **properties**, which contain values, as well **methods**, which are functions associated with that object. More technically, objects in JavaScript are a collection of *key/value pairs*. The keys have to be strings, the values can be any valid JavaScript value.
+
+An **object literal**:
+
+```javascript
+var obj = {
+	prop1: 3,
+	prop2: 'a',
+	prop3: true,
+	func1: function() {
+		console.log('eu sunt o metoda');
+	},
+	func2: function() {
+		console.log('eu sunt alta metoda');
+		return this.prop1 + this.prop2;
+	}
+};
+```
+
+There are two main ways of accessing object propeties and methods:
+
+```javascript
+var a = obj.prop1;		// 3
+var b = obj.func2();	// '3a'
+
+var c = obj['prop1'];	// 3
+var d = [];
+var key = '';
+for (var i = 0; i < 3; i++) {
+	key = 'prop' + i;
+	d.push(obj[key]);
+}
+```
+
+The *dot notation* is easier to write, but has some limitations, mainly that you need to know the propety or method name in advance. With the *bracket notation* you can even use variables as keys.
+
+Literals are a simple form of defining an object, but they are limited. There are other ways of defining objects. We could start with an empty object and add methods and properties to it later.
+
+```javascript
+var obj = {};
+
+obj.prop1 = 3;
+obj.prop2 = 'a';
+obj.prop3 = true;
+obj.func1 = function() {
+	console.log('eu sunt o metoda');
+};
+obj.func2 = function() {
+	console.log('eu sunt alta metoda');
+	return this.prop1 + this.prop2;
+};
+```
+
+#### Prototype-based programming or Inheritance
+
+JavaScript doesn't have clases (yet) but is a **prototype-based** programming language. An object can serve as a template for other objects, i.e. what is known as inheritance in other object-oriented languages.
+
+There are a few ways of creating instances of an object. 
+
+A powerful and standard way is using a **constructor**. A constructor is similar to the concept of classes from other programming languages. In JavaScript, a constructor (a class) is just a function. By convention, constructors start with an uppercase letter.
+
+```javascript
+function Build() {}
+```
+
+*Build* is the class. To create a new instance of the class, we use the *new* operator.
+
+```javascript
+var obj1 = new Build();
+var obj2 = new Build();
+```
+
+This creates two new objects with the same methods and properties as Build.
+
+```javascript
+var Person = function(firstName, lastName) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+};
+
+var p1 = new Person('Ion', 'Iliescu');
+var p2 = new Person('Dan', 'Negru');
+
+console.log(p1.firstName);	//	'Ion'
+console.log(p1.lastName);	//	'Iliescu'
+
+console.log(p2.firstName);	//	'Dan'
+console.log(p2.lastName);	//	'Negru'
+```
+
+The **this** operator is a reference to the object that created the context it exists in, i.e. the object that called the function currently running. In the example above, **this** is a reference to the Person constructor function.
+
+Properties and methods don't have to be defined in the constructor:
+
+```javascript
+var Person = function(firstName, lastName) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+};
+
+Person.prototype.sayHello = function() {
+	console.log('Hello, my name is ' + this.firstName + ' ' + this.lastName + '.');
+};
+
+var p1 = new Person('Ion', 'Iliescu');
+var p2 = new Person('Dan', 'Negru');
+
+p1.sayHello();	// 'Hello, my name is Ion Iliescu.' 
+p2.sayHello();	// 'Hello, my name is Dan Negru.'
+```
+
+You can add methods and properties to individual objects at will. Continuing the example above:
+
+```javascript
+p1.age = 'over 9000!!!!!';
+p1.howOldAmI =  function() {
+	console.log('I\'m ' + this.age + ' years old.');
+};
+
+p1.howOldAmI();		// 'I'm over 9000!!!!! years old.'
+p2.howOldAmI();		// TypeError: undefined is not a function
+```
+
+The property *age* and the method *howOldAmI* exist only on p1, on p2 they are *undefined*.
+
+You can iterate over the methods and properties of an object's enumerable properties with *for...in*. This method traverses all enumerable properties of an object and its prototype chain (i.e. parents).
+
+The *hasOwnProperty* method is built into all objects and it returns true if the property belongs to the actual object and is not inherited from a parent.
+
+```javascript
+for (var k in p1) {
+	if (p1.hasOwnProperty(k)) {
+		console.log(k + ': ' + p1[k]);
+	}
+}
+
+/*
+
+	firstName: Ion
+	lastName: Iliescu
+	age: over 9000!!!!!
+	howOldAmI: function () {
+		console.log('I\'m ' + this.age + ' old.');
+	}
+
+*/
+```
+
+Another method is Object.keys(o) which returns an array with all the own (not in the prototype chain) enumerable keys of an object 
+
+```javascript
+Object.keys(p1);	// ["firstName", "lastName", "age", "howOldAmI"]
+```
 
 
+#### References
 
+While there are no *pointers* in JavaScript, there are references. All objects are references in JavaScript, that is, they point to a certain value in the memory.
 
+```javascript
+var a1 = {
+	pro1: 'a';
+}
+var a2 = a1;
 
+a2.pro1 = 5;
+console.log(a1.pro1);	// 5
+```
 
+Both a1 and a2 point to the same object in memory, so modifying one also modifies the other. This is something you have to be careful with when working with objects. This applies to functions, since functions are objects in JavaScript.
 
+```javascript
+var f1 = function() {
+	return 5;
+};
 
+var f2 = f1;
 
-
-
-
-
-
+f1();	// 5
+f2();	// 5
+```
