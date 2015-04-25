@@ -1,0 +1,54 @@
+body {
+	margin: 0;
+	padding: 0;
+	min-width: 400px;
+	font-family: arial;
+}
+
+#container {
+	display: flex;
+	height: 100vh;
+}
+
+#sidebar {
+	width: 20%;
+	background: #eee;
+	min-width: 150px;
+}
+
+#chat {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#enter {
+	padding: 4px;
+	margin-bottom: 10px;
+
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	margin: 0 4px;
+	padding: 4px;
+	list-style: none;
+}
+
+#users li:hover {
+	cursor: pointer;
+}
+
+.active {
+	color: white;
+	background-color: black;
+}
+
+.name {
+	color: #444;
+}
